@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ecommerce</title>
+</head>
+<body>
+	<div>
+		<% mugTypes.forEach(function(mugType){ %>
+			<!-- <option value="<%= mugType %>"><%= mugType %></option> -->
+			<div style="float:left;">
+				<img style="width: 20vw;" src="/mugModels/<%= mugType.visuals %>/<%= mugType.visuals %>.jpg">
+				<p><a href="/mugs/sell/downloadModel/<%= mugType.id %>">download model</a></p>
+			</div>
+		<%})%>
+	</div>
+	<form method="post" action="/mugs/add" enctype="multipart/form-data">
+		<input type="text" name="artist" placeholder="artist">
+		<input type="file" name="picture" placeholder="preview pic">
+		<input type="number" name="price">
+		<select name="mugType">
+			<% mugTypes.forEach(function(mugType){ %>
+				<option value="<%= mugType.name %>"><%= mugType.name %></option>
+			<%})%>
+		</select>
+		<input type="submit" >
+	</form>
+	<script type="text/javascript">
+		const images=document.querySelector('div').children;
+		// images.map(image=>{
+		const select=document.querySelector('select');
+		for(let i=0;i<images.length;i++){
+			images[i].lastElementChild.addEventListener('click',()=>{
+				select.selectedIndex=i;
+			})
+		}
+	</script>
+</body>
+</html>

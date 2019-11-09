@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ecommerce</title>
+</head>
+<body>
+	<% include ../partials/header %>
+	<% mugs.forEach(function(mug){ %>
+		<div style="float: left;" >
+			<img style="width:20vw;" src="<%= mug.picture %>">
+			<p><%= mug.name %></p>
+		</div> 
+	<% }); %>
+</body>
+</html>
